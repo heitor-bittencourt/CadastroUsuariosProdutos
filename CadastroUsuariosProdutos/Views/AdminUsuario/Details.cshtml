@@ -1,0 +1,51 @@
+﻿@using CadastroUsuariosProdutos.Models
+@using Microsoft.AspNet.Identity.Owin
+@model CadastroUsuariosProdutos.Models.ApplicationUser
+@{
+    ViewBag.Title = "Detalhes";
+}
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="box-title">
+            <b>Usuário</b>
+        </h3>
+    </div>
+
+    <h4 style="padding: 10px;"><b>@Html.DisplayFor(model => model.UserName)</b></h4>
+
+    <div class="panel-body">
+        <table class="table table-hover table-bordered table-condensed" id="tabela1">
+            <thead>
+                <tr>
+                    <td><b>Perfis deste usuário</b></td>
+                </tr>
+            </thead>
+            @foreach (var item in ViewBag.RoleNames)
+            {
+                <tr>
+                    <td>@item</td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Voltar para a lista", "Index")
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+        <div class="panel-footer">
+            <p class="box-title">
+                <b> Total de perfis deste usuário:  </b><span class="label label-primary">@ViewBag.RoleNames.Count</span>
+            </p>
+        </div>
+ </div>
+
+<@section scripts{
+        <script>
+        $(function () {
+            $("#tabela1").DataTable();
+        });
+        </script>
+}

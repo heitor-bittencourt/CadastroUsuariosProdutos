@@ -1,0 +1,40 @@
+﻿@model CadastroUsuariosProdutos.Models.Produto
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhamento</h2>
+
+<div>    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ProdutoId }) |
+    @Html.ActionLink("Voltar para a lista", "Index")
+</p>

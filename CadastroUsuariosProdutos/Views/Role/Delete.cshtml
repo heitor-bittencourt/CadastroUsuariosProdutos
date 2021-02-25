@@ -1,0 +1,23 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    ViewBag.Title = "Deletar";
+}
+<h2 style="padding-top: 15px;">Deletar</h2>
+<h3>Você tem certeza que deseja deletar este perfil? </h3>
+<p>Apagar este perfil irá remover todos os usuários deste perfil. Não irá excluir os usuários.</p>
+<div>
+    <hr />
+    <h4>
+        Perfil: @Html.DisplayFor(model => model.Name)
+    </h4>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Deletar" class="btn btn-default" /> |
+                @Html.ActionLink("Voltar para a lista", "Index")
+            </div>
+        }
+</div>
+

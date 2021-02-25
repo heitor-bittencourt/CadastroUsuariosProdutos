@@ -1,0 +1,24 @@
+﻿@model CadastroUsuariosProdutos.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Deletar";
+}
+
+<h2 style="padding-bottom: 15px;">Deletar usuário</h2>
+
+<h4 class="text-danger">Ao clicar em deletar o usuário abaixo será <b>EXCLUÍDO</b> da base de dados. </h4>
+<div>
+    <hr />
+    <h4><b>@Html.DisplayFor(model => model.UserName)</b></h4>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar para a lista", "Index")
+        </div>
+    }
+</div>
+

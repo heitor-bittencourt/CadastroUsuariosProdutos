@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace CadastroUsuariosProdutos.Models
 {
@@ -64,6 +65,9 @@ namespace CadastroUsuariosProdutos.Models
 
     public class RegisterViewModel
     {
+        [Display(Name = "Nome")]
+        public string Name { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -77,9 +81,24 @@ namespace CadastroUsuariosProdutos.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirmar Senha")]
-        [Compare("Password", ErrorMessage = "A senha e a senha de confirmação não correspondem.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "A senha e a senha de confirmação não correspondem.")]
         public string ConfirmPassword { get; set; }
     }
+
+
+        public class EditUserViewModel
+        {
+            public string Id { get; set; }
+
+            [Required(AllowEmptyStrings = false)]
+            [Display(Name = "E-mail")]
+            [EmailAddress]
+            public string Email { get; set; }
+
+            public IEnumerable<SelectListItem> RolesList { get; set; }
+        }
+    
+
 
     public class ResetPasswordViewModel
     {
@@ -96,7 +115,7 @@ namespace CadastroUsuariosProdutos.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirmar senha")]
-        [Compare("Password", ErrorMessage = "A senha e a senha de confirmação não coincidem.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "A senha e a senha de confirmação não coincidem.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

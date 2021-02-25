@@ -1,0 +1,49 @@
+﻿@model CadastroUsuariosProdutos.Models.ProdutoViewModel
+@{
+    ViewBag.Title = "Produtos";
+    var grid = new WebGrid(source: Model.Produtos, canPage: true, canSort: false, rowsPerPage: 5);
+    grid.Pager(WebGridPagerModes.All);
+    
+}
+
+   <div class="panel-heading">
+        <h3 class="box-title">
+            <b>Pesquisar</b>
+        </h3>
+        <p>
+            @Html.ActionLink("Cadastrar novo produto", "Create")
+        </p>
+   </div>
+
+    @using (Html.BeginForm())
+    {
+        <form class="form-horizontal" role="form">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <td>Pesquisa por Tipo:</td>
+                    <td>@Html.TextBoxFor(model => model.Tipo)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" id="search" title="Pesquisar" value="Pesquisar" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    
+        <div id="webgrid">
+            @grid.GetHtml(
+              tableStyle: "table table-responsive table-striped table-bordered table-hover ",
+              headerStyle: "wedgrid-header",
+              footerStyle: "",
+              rowStyle: "",
+              columns: grid.Columns(
+                grid.Column(columnName: "Nome", header: "Nome"),
+                grid.Column(columnName: "Valor", header: "Valor"),
+                grid.Column(columnName: "Tipo", header: "Tipo")))
+             <p>@Html.ActionLink("Lista personalizada", "Index")</p>            
+            
+        </div>
+        
+    }
+

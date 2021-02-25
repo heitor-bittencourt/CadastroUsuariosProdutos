@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CadastroUsuariosProdutos.Models;
+using System.Data.Entity;
 
 namespace CadastroUsuariosProdutos.Controllers
 {
@@ -17,9 +17,11 @@ namespace CadastroUsuariosProdutos.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        ApplicationDbContext context;
 
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -137,8 +139,16 @@ namespace CadastroUsuariosProdutos.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
+        /*public async Task<ActionResult> Register()
+        {
+            ViewBag.RoleName = new SelectList(await context.Roles.ToListAsync(), "Name", "Name");            
+            return View();
+        }*/
+
         public ActionResult Register()
         {
+            //ViewBag.RoleName = new SelectList(context.Roles.ToList(), "Name", "Name");
+
             return View();
         }
 
@@ -155,8 +165,12 @@ namespace CadastroUsuariosProdutos.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //Atribui o Peril ao usuário
+                    //await this.UserManager.AddToRoleAsync(user.Id, model.Name);
+                    //fim da atribuição
+
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // Para obter mais informações sobre como habilitar a confirmação da conta e redefinição de senha, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar um email com este link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -170,6 +184,11 @@ namespace CadastroUsuariosProdutos.Controllers
 
             // Se chegamos até aqui e houver alguma falha, exiba novamente o formulário
             return View(model);
+        }
+
+        private static ApplicationUser GetUser(RegisterViewModel model)
+        {
+            return new ApplicationUser { UserName = model.Email, Email = model.Email };
         }
 
         //

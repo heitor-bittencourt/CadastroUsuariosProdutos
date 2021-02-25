@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CadastroUsuariosProdutos.Models.Produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="box-title">
+            <b>Produtos</b>
+        </h3>
+    </div>
+
+    <p style="padding: 10px;">
+        @Html.ActionLink("Criar Novo", "Create")
+    </p>
+    <div class="panel-body">
+        <table class="table table-hover table-bordered table-condensed" id="tabela1">
+            <thead>
+                <tr>
+                    <td><b>@Html.DisplayNameFor(model => model.Nome)</b></td>
+                    <td><b>@Html.DisplayNameFor(model => model.Valor)</b></td>
+                    <td><b>@Html.DisplayNameFor(model => model.Tipo)</b></td>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ProdutoId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ProdutoId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ProdutoId })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="panel-footer">
+        <p class="box-title">
+            <b> Total de produtos:  </b><span class="label label-primary">@Model.Count()</span>
+        </p>
+        <button class="btn btn-default">@Html.ActionLink("Página de pesquisa", "Pesquisa")</button>
+        
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#tabela1").DataTable();
+        });
+    </script>
+}

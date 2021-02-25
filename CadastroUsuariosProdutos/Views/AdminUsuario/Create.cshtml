@@ -1,17 +1,16 @@
 ﻿@model CadastroUsuariosProdutos.Models.RegisterViewModel
 @{
-
-    ViewBag.Title = "Cadastre-se";
+    ViewBag.Title = "Cadastro de Usuário";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2 style="padding-top: 15px;">@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Create", "AdminUsuario", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Crie uma nova conta.</h4>
+    <h4>Criar novo usuário</h4>
     <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.ValidationSummary("", new { @class = "text-error" })
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -30,23 +29,31 @@
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
-
-    @*<!-- Selecionar o Tipo de Perfil para o usuário -->
-        <div class="form-group">
-            @Html.Label("Selecione o Tipo de Perfil do Usuário", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.DropDownList("Name")
-            </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">
+            Selecione os perfis disponíveis para este usuário:
+        </label>
+        <div class="col-md-10">
+            @foreach (var item in (SelectList)ViewBag.RoleId)
+            {
+                <input type="checkbox" name="SelectedRoles" value="@item.Value" class="checkbox-inline" />
+                @Html.Label(item.Value, new { @class = "control-label" })
+            }
         </div>
-        <!-- Fim da seleção do tipo de usuário -->*@
-
+    </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Cadastre-se" />
+            <input type="submit" class="btn btn-default" value="Cadastrar" />
         </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("Retornar", "Index")
     </div>
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+

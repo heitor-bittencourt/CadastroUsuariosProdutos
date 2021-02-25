@@ -25,6 +25,13 @@ namespace CadastroUsuariosProdutos
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/datatable/css").Include(
+                      "~/Content/datatable/css/dataTables.bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/datatable/js").Include(
+                      "~/Content/datatable/js/jquery.dataTables.min.js",
+                      "~/Content/datatable/js/dataTables.bootstrap.min.js"));
         }
     }
 }
