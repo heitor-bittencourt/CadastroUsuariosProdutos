@@ -28,9 +28,8 @@
             }
             <tr>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-                    @Html.ActionLink("Voltar para a lista", "Index")
-                    </p>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Voltar para a lista", "Index", new { } , new { @class = "btn btn-warning" })                    
                 </td>
             </tr>
         </table>

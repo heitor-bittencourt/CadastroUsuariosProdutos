@@ -8,7 +8,7 @@
     <p>Clique no botão abaixo e faça o seu login!</p>
     @using (Html.BeginForm("Login", "Account", FormMethod.Get))
     {
-        <input type="submit" value="Login" class="btn btn-primary btn-lg">
+        <input type="submit" value="Login" class="btn btn-warning btn-lg">
         
     }
 
@@ -22,7 +22,7 @@
         </p>
         @using (Html.BeginForm("Register", "Account", FormMethod.Get))
         {
-            <input type="submit" value="Cadastrar usuário" class="btn btn-primary btn-lg">
+            <input type="submit" value="Cadastrar usuário" class="btn btn-warning btn-lg">
 
         }
     </div>
@@ -31,7 +31,7 @@
         <p>Ao clicar  no botão abaixo será possível acessar a tela de cadastro de seus produtos.</p>
         @using (Html.BeginForm("Index", "Produtos", FormMethod.Get))
         {
-            <input type="submit" value="Cadastrar produto" class="btn btn-primary btn-lg">
+            <input type="submit" value="Cadastrar produto" class="btn btn-warning btn-lg">
 
         }
     </div>

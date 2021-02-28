@@ -13,20 +13,20 @@
         <table class="table table-hover table-bordered table-condensed" id="tabela1">
             <thead>
                 <tr>
-                    <td><b>Usuário</b></td>
+                    <h4><b>Usuário(s) cadastrado(s):</b></h4>
                 </tr>
             </thead>
             @foreach (var item in ViewBag.Users)
             {
                 <tr>
-                    <td>@item.UserName</td>
+                    <td><h5>@item.UserName</h5></td>
 
                 </tr>                
             }
                 <tr>
                     <td>
-                        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-                        @Html.ActionLink("Voltar para a lista", "Index")
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Voltar para a lista", "Index", new { }, new { @class = "btn btn-warning" })
                     </td>
                 </tr>
         </table>

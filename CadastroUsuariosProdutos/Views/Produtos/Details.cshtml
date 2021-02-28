@@ -35,6 +35,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.ProdutoId }) |
-    @Html.ActionLink("Voltar para a lista", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ProdutoId }, new { @class = "btn btn-warning" }) 
+    @Html.ActionLink("Voltar para a lista", "Index", new { }, new { @class = "btn btn-warning" })
 </p>

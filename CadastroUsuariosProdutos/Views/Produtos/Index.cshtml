@@ -12,7 +12,7 @@
     </div>
 
     <p style="padding: 10px;">
-        @Html.ActionLink("Criar Novo", "Create")
+        @Html.ActionLink("Criar Novo", "Create", new { }, new { @class = "btn btn-success" })
     </p>
     <div class="panel-body">
         <table class="table table-hover table-bordered table-condensed" id="tabela1">
@@ -36,9 +36,9 @@
                         @Html.DisplayFor(modelItem => item.Tipo)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ProdutoId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ProdutoId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ProdutoId })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ProdutoId }, new { @class = "btn-sm btn-warning" }) 
+                        @Html.ActionLink("Details", "Details", new { id = item.ProdutoId }, new { @class = "btn-sm btn-warning" }) 
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ProdutoId }, new { @class = "btn-sm btn-warning" })
                     </td>
                 </tr>
             }
@@ -46,9 +46,9 @@
     </div>
     <div class="panel-footer">
         <p class="box-title">
-            <b> Total de produtos:  </b><span class="label label-primary">@Model.Count()</span>
+            <b> Total de produtos:  </b><span class="label label-primary" class="btn">@Model.Count()</span>
         </p>
-        <button class="btn btn-default">@Html.ActionLink("Página de pesquisa", "Pesquisa")</button>
+        @Html.ActionLink("Página de pesquisa", "Pesquisa", new { }, new { @class = "btn btn-warning" })
         
     </div>
 </div>
